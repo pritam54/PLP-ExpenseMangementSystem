@@ -10,7 +10,7 @@ public interface ExpenseClaimService {
 		
 	boolean deleteClaim(int claimId);
 
-	ExpenseClaim modifyClaim(int claimId, ExpenseClaim claim);
+	ExpenseClaim modifyClaim(ExpenseClaim claim);
 	
 	
 

@@ -25,8 +25,8 @@ public class ExpenseClaimServiceImpl implements ExpenseClaimService {
 	}
 
 	@Override
-	public ExpenseClaim modifyClaim(int claimId,ExpenseClaim claim) {
-		return dao.modifyClaim(claimId,claim);
+	public ExpenseClaim modifyClaim(ExpenseClaim claim) {
+		return dao.modifyClaim(claim);
 	}
 
 	@Override

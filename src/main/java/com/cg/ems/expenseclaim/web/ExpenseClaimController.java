@@ -12,7 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.cg.ems.expenseclaim.dto.Client;
+import com.cg.ems.expenseclaim.dto.Employee;
+import com.cg.ems.expenseclaim.dto.Expense;
 import com.cg.ems.expenseclaim.dto.ExpenseClaim;
+import com.cg.ems.expenseclaim.dto.FinanceUser;
+import com.cg.ems.expenseclaim.dto.Project;
 import com.cg.ems.expenseclaim.service.ExpenseClaimService;
 
 @RestController
@@ -22,7 +27,7 @@ public class ExpenseClaimController {
 	@Autowired
 	private ExpenseClaimService service;
 	@Autowired
-	RestTemplate template;
+	RestTemplate restTemplate;
 	
 	@PostMapping(value = "/claim/addclaim",produces = "application/json",consumes = "application/json")
 	public int addClaim(@RequestBody ExpenseClaim claim) {
@@ -34,9 +39,9 @@ public class ExpenseClaimController {
 		return service.viewClaim(claimId);
 	}
 	
-	@PutMapping(value = "/claim/modifyclaim/claimId",produces = "application/json",consumes = "application/json")
-	public ExpenseClaim modifyClaim(@PathVariable int claimId,@RequestBody ExpenseClaim claim) {
-		return service.modifyClaim(claimId, claim);
+	@PutMapping(value = "/claim/modifyclaim",produces = "application/json",consumes = "application/json")
+	public ExpenseClaim modifyClaim(@RequestBody ExpenseClaim claim) {
+		return service.modifyClaim(claim);
 		
 	}
 	@DeleteMapping(value = "/claim/deleteclaim",produces = "application/json")
@@ -44,5 +49,31 @@ public class ExpenseClaimController {
 		return service.deleteClaim(claimId);
 		
 	}
-
+	@GetMapping(value = "/employee",produces = "application/json")
+	public Employee getEmployee(@RequestParam String employeeId) {
+		Employee retrivedEmployee =restTemplate.getForObject("http://product-add-service/product/add/" + employeeId,Employee.class);
+		return retrivedEmployee;
+	}
+	
+	@GetMapping(value = "/expense",produces = "application/json")
+	public Expense getExpense(@RequestParam int expenseId) {
+		Expense retrivedExpense =restTemplate.getForObject("http://product-add-service/product//" + expenseId,Expense.class);
+		return retrivedExpense;
+	}
+	@GetMapping(value = "/client",produces = "application/json")
+	public Client getClient(@RequestParam int clientId) {
+		Client retrivedClient =restTemplate.getForObject("http://product-add-service/product//j" + clientId,Client.class);
+		return retrivedClient;
+	}
+	@GetMapping(value = "/project",produces = "application/json")
+	public Project getProject(@RequestParam int projectId) {
+		Project retrivedProject =restTemplate.getForObject("http://product-add-service/product//j" + projectId,Project.class);
+		return retrivedProject;
+	}
+	@GetMapping(value = "/finance",produces = "application/json")
+	public FinanceUser getFinance(@RequestParam String financeUserId) {
+		FinanceUser retrivedFinance =restTemplate.getForObject("http://product-add-service/product//j" + financeUserId,FinanceUser.class);
+		return retrivedFinance;
+	}
+	
 }

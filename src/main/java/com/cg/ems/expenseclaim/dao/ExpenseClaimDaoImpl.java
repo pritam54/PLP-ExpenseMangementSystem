@@ -26,9 +26,9 @@ public class ExpenseClaimDaoImpl implements ExpenseClaimDao {
 	}
 
 	@Override
-	public ExpenseClaim modifyClaim(int claimId,ExpenseClaim claim) {
-		ExpenseClaim initialClaim = mgr.find(ExpenseClaim.class, claimId);
-		System.out.println(initialClaim);
+	public ExpenseClaim modifyClaim(ExpenseClaim claim) {
+		//ExpenseClaim initialClaim = mgr.find(ExpenseClaim.class, claimId);
+		//System.out.println(initialClaim);
 		mgr.merge(claim);
 		return claim;
 	}

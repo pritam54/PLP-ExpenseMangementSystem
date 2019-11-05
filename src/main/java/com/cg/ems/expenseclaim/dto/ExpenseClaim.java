@@ -21,13 +21,15 @@ public class ExpenseClaim {
 	@GeneratedValue(generator = "expense_claim_sequence",strategy = GenerationType.SEQUENCE)
 	private int claimId;
 	@Column
-	private int employeeId;
+	private String employeeId;
 	@Column
 	private int projectId;
 	@Column
 	private int clientId;
 	@Column
 	private int expenseId;
+	@Column
+	private int financeUserId;
 	@Column
 	@NotNull
 	private double amount;
@@ -36,7 +38,7 @@ public class ExpenseClaim {
 	@Column
 	private Date endDate;
 	@Column
-	private int status;
+	private String status;
 	@Column
 	@NotNull
 	private String description;
@@ -45,12 +47,6 @@ public class ExpenseClaim {
 	}
 	public void setClaimId(int claimId) {
 		this.claimId = claimId;
-	}
-	public int getEmployeeId() {
-		return employeeId;
-	}
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
 	}
 	public int getProjectId() {
 		return projectId;
@@ -88,23 +84,39 @@ public class ExpenseClaim {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
+
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public int getFinanceUserId() {
+		return financeUserId;
+	}
+	public void setFinanceUserId(int financeUserId) {
+		this.financeUserId = financeUserId;
+	}
+	
+	
+	public String getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
 		return "ExpenseClaim [claimId=" + claimId + ", employeeId=" + employeeId + ", projectId=" + projectId
-				+ ", clientId=" + clientId + ", expenseId=" + expenseId + ", amount=" + amount + ", startDate="
-				+ startDate + ", endDate=" + endDate + ", status=" + status + ", description=" + description + "]";
+				+ ", clientId=" + clientId + ", expenseId=" + expenseId + ", financeUserId=" + financeUserId
+				+ ", amount=" + amount + ", startDate=" + startDate + ", endDate=" + endDate + ", status=" + status
+				+ ", description=" + description + "]";
 	}
 	
 	
