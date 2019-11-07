@@ -1,5 +1,7 @@
 package com.cg.ems.expenseclaim.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +41,20 @@ public class ExpenseClaimDaoImpl implements ExpenseClaimDao {
 
 	@Override
 	public boolean deleteClaim(int claimId) {
-		mgr.remove(claimId);
+		
+		ExpenseClaim deleteClaim=mgr.find(ExpenseClaim.class, claimId);
+		if (deleteClaim==null) {
+			return false;
+		}else {
+		mgr.remove(deleteClaim);
 		return true;
+		}
+	}
+
+	@Override
+	public List<ExpenseClaim> getAllClaims() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

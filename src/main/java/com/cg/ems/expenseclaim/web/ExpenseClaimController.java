@@ -47,8 +47,8 @@ public class ExpenseClaimController {
 		return service.modifyClaim(claim);
 		
 	}
-	@DeleteMapping(value = "/claim/deleteclaim",produces = "application/json")
-	public boolean deleteclaim(@RequestParam int claimId) {
+	@DeleteMapping(value = "/claim/deleteclaim/{claimId}",produces = "application/json")
+	public boolean deleteclaim(@PathVariable int claimId) {
 		return service.deleteClaim(claimId);
 		
 	}

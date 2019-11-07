@@ -9,18 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Expense_Claim_Details")
-@GenericGenerator(name = "expense_claim_sequence",strategy="increment")
+@GenericGenerator(name = "expense_claim_seq",strategy="increment")
 public class ExpenseClaim {
 	
 	@Id
-	@GeneratedValue(generator = "expense_claim_sequence",strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "expense_claim_seq",strategy = GenerationType.SEQUENCE)
 	private int claimId;
+	
 	@Column
+	@NotNull(message = "EmployeeId Name cannot be null")
 	private String employeeId;
 	@Column
 	private int projectId;
@@ -29,18 +32,17 @@ public class ExpenseClaim {
 	@Column
 	private int expenseId;
 	@Column
+	@NotNull
 	private String financeUserId;
 	@Column
-	@NotNull
+	@NotNull(message = "Claim Amount cannot be null")
 	private double amount;
 	@Column
 	private Date startDate;
 	@Column
-	private Date endDate;
-	@Column
 	private String status;
 	@Column
-	@NotNull
+	@NotNull(message = "Description cannot be null")
 	private String description;
 	public int getClaimId() {
 		return claimId;
@@ -78,12 +80,6 @@ public class ExpenseClaim {
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
 
 	public String getDescription() {
 		return description;
@@ -116,7 +112,7 @@ public class ExpenseClaim {
 	public String toString() {
 		return "ExpenseClaim [claimId=" + claimId + ", employeeId=" + employeeId + ", projectId=" + projectId
 				+ ", clientId=" + clientId + ", expenseId=" + expenseId + ", financeUserId=" + financeUserId
-				+ ", amount=" + amount + ", startDate=" + startDate + ", endDate=" + endDate + ", status=" + status
+				+ ", amount=" + amount + ", startDate=" + startDate + ", status=" + status
 				+ ", description=" + description + "]";
 	}
 	

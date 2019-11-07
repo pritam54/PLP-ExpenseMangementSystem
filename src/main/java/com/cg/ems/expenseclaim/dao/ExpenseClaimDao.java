@@ -1,6 +1,8 @@
 package com.cg.ems.expenseclaim.dao;
 
 
+import java.util.List;
+
 import com.cg.ems.expenseclaim.dto.ExpenseClaim;
 import com.cg.ems.expenseclaim.exception.ExpenseClaimNotFound;
 
@@ -13,5 +15,7 @@ public interface ExpenseClaimDao{
 	boolean deleteClaim(int claimId);
 
 	ExpenseClaim modifyClaim(ExpenseClaim claim);
+	
+	List<ExpenseClaim> getAllClaims();
 
 }
